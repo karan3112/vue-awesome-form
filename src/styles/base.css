@@ -1,0 +1,112 @@
+*, :after, :before {
+    box-sizing: border-box;
+}
+[type=checkbox], [type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+}
+[type=reset], [type=submit], button, html [type=button] {
+    -webkit-appearance: button;
+}
+article, aside, blockquote, body, button, dd, details, div, dl, dt, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, hr, input, legend, li, menu, nav, ol, p, section, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+}
+.transition-drop-enter-active {
+    opacity: 0;
+    animation-name: ivuTransitionDropIn;
+    animation-play-state: running;
+}
+.transition-drop-leave-active {
+    opacity: 1;
+    animation-name: ivuTransitionDropOut;
+    animation-play-state: running;
+}
+.transition-drop-enter-active, .transition-drop-leave-active {
+    animation-timing-function: ease-in-out;
+    animation-duration: .3s;
+    animation-fill-mode: both;
+}
+@keyframes ivuTransitionDropIn {
+    0% {
+        opacity: 0;
+        transform: scaleY(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes ivuTransitionDropOut {
+    0% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scaleY(0.8);
+    }
+}
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+.jf-form {
+  text-align: left;
+}
+.jf-form-item {
+  margin-bottom: 24px;
+}
+
+.jf-form-item-label {
+    text-align: right;
+    vertical-align: middle;
+    float: left;
+    font-size: 12px;
+    color: #495060;
+    line-height: 1;
+    padding: 10px 12px 10px 0;
+    box-sizing: border-box;
+} 
+
+.jf-form-item-content {
+    position: relative;
+    line-height: 32px;
+    font-size: 12px;
+}
+.jf-form-item-noLabel {
+    & > .jf-form-item-label {
+        width: auto;
+    }
+    & > .jf-form-item-content {
+        margin-left: 0px;
+    }
+}
+.jf-form-item-hasLabel {
+    & > .jf-form-item-label {
+        width: 80px;
+    }
+    & > .jf-form-item-content {
+        margin-left: 80px;
+    }
+}
+
+.jf-form-item-error-tip {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      line-height: 1;
+      padding-top: 6px;
+      color: #ed3f14;
+}
+.jf-table {
+    & .jf-form-item-error-tip {
+      position: static;
+      text-align: left;
+    }
+}
