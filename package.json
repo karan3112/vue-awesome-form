@@ -1,8 +1,8 @@
 {
   "name": "vue-awesome-form",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A schema-based form generator component for Vue.js",
-  "author": "fightingm <417300459@qq.com>",
+  "author": "karan3112 <karan.more3112@gmail.com>",
   "private": false,
   "main": "dist/main.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fightingm/vue-awesome-form.git"
+    "url": "git+https://github.com/karan3112/vue-awesome-form.git"
   },
   "dependencies": {
     "@johmun/vue-tags-input": "^1.4.1",
