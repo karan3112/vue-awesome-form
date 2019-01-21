@@ -202,9 +202,9 @@ export default {
     add() {
       if(typeof(this.addDefault) !== 'undefined')
       {
-        this.msg.push( {...JSON.parse(JSON.stringify(this.addDefault))} );
+        this.msg.push({...JSON.parse(JSON.stringify(this.addDefault))});
       }else{
-        this.msg.push( {...this.addDefault} );
+        this.msg.push({...this.addDefault});
       }
     },
     del(index) {
