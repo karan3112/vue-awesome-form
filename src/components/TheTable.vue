@@ -7,7 +7,7 @@
         <small>{{this.noDescription ? '' : this.controlOptions.description}}</small>
       </div>
       <div>
-        <b-tabs vertical input="tabShown" v-model="tabIndex">
+        <b-tabs vertical v-on:input="tabShown" v-model="tabIndex">
           <b-tab :disabled="isReadOnly">
             <template slot="title">
               <Button @click="add" v-if="!isReadOnly" type="primary">{{addText || '+Add new'}}</Button>
