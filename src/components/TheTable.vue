@@ -139,7 +139,7 @@ export default {
     TheObject,
     Button
   },
-  props: ['title', 'objKey', 'objVal', "addDefault", "addText", "columns", "noLabel", "rules", "controlOptions", "uniqueKey"],
+  props: ['title', 'objKey', 'objVal', "addDefault", "addText", "columns", "noLabel", "rules", "controlOptions", "uniqueKey", "callBackEvent"],
   computed: {
     orderColumns() {
       return orderProperty(this.columns);
@@ -218,7 +218,9 @@ export default {
       }
     },
     tabShown(tab_index){
-      console.log(tab_index);
+      if(this.callBackEvent){
+        this.callBackEvent(tab_index, this.objVal);
+      }
     },
     getControlOptions(cO){
       // return {};
