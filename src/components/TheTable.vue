@@ -31,7 +31,7 @@
                 </Button>
               </div>
               <div class="">
-                <div class="row">
+                <div class="row row-no-hidden">
                   <div :class="item.val.hasOwnProperty('layoutClass') ? item.val.layoutClass : 'col-md-6'" v-for="(item, i) in orderColumns" :key="i + 'cell' + index + (typeof(uniqueKey) !== 'undefined' ? uniqueKey : '')">
                     <component 
                       :is="item.val.type" 
@@ -81,7 +81,7 @@
               </svg>
             </Button>  
           </div>
-          <div class="row">
+          <div class="row row-no-hidden">
             <div :class="item.val.hasOwnProperty('layoutClass') ? item.val.layoutClass : 'col-md-6'" v-for="(item, i) in orderColumns" :key="i + 'cell' + index + (typeof(uniqueKey) !== 'undefined' ? uniqueKey : '')">
               <component 
                 :is="item.val.type" 
@@ -233,7 +233,7 @@ export default {
       validateState: '',
       validateMessage: '',
       validateArray: [],
-      tabIndex : this.objVal.length
+      tabIndex : (this.objVal.length>0?1:0)
     }
   },
   watch : {
