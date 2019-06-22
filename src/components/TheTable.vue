@@ -31,7 +31,7 @@
                 </Button>
               </div>
               <div class="">
-                <div class="row row-no-hidden">
+                <div class="row">
                   <div :class="item.val.hasOwnProperty('layoutClass') ? item.val.layoutClass : 'col-md-6'" v-for="(item, i) in orderColumns" :key="i + 'cell' + index + (typeof(uniqueKey) !== 'undefined' ? uniqueKey : '')">
                     <component 
                       :is="item.val.type" 
@@ -81,7 +81,7 @@
               </svg>
             </Button>  
           </div>
-          <div class="row row-no-hidden">
+          <div class="row">
             <div :class="item.val.hasOwnProperty('layoutClass') ? item.val.layoutClass : 'col-md-6'" v-for="(item, i) in orderColumns" :key="i + 'cell' + index + (typeof(uniqueKey) !== 'undefined' ? uniqueKey : '')">
               <component 
                 :is="item.val.type" 
@@ -219,7 +219,7 @@ export default {
     },
     tabShown(tab_index){
       if(this.callBackEvent){
-        this.callBackEvent(tab_index, this.objVal);
+        this.callBackEvent(tab_index, this.objVal, this.title);
       }
     },
     getControlOptions(cO){
@@ -228,12 +228,13 @@ export default {
     }
   },
   data () {
+    //console.log(this.objVal)
     return {
       keyName: this.objKey,
       validateState: '',
       validateMessage: '',
       validateArray: [],
-      tabIndex : (this.objVal.length>0?1:0)
+      tabIndex : (this.objVal.length > 0 ? 1 : 0)
     }
   },
   watch : {
@@ -250,6 +251,13 @@ export default {
         this.tabIndex = this.objVal.length;
       })
     }
+  },
+  created: function(){
+    this.tabShown(0)
+    let self = this;
+    setTimeout(() => {
+      self.tabShown((self.objVal.length > 0 ? 1 : 0))
+    }, 500);
   }
 }
 </script>
