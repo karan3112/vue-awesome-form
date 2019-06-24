@@ -219,7 +219,7 @@ export default {
     },
     tabShown(tab_index){
       if(this.callBackEvent){
-        this.callBackEvent(tab_index, this.objVal);
+        this.callBackEvent(tab_index, this.objVal, this.title);
       }
     },
     getControlOptions(cO){
@@ -228,12 +228,13 @@ export default {
     }
   },
   data () {
+    //console.log(this.objVal)
     return {
       keyName: this.objKey,
       validateState: '',
       validateMessage: '',
       validateArray: [],
-      tabIndex : this.objVal.length
+      tabIndex : (this.objVal.length > 0 ? 1 : 0)
     }
   },
   watch : {
@@ -250,6 +251,13 @@ export default {
         this.tabIndex = this.objVal.length;
       })
     }
+  },
+  created: function(){
+    this.tabShown(0)
+    let self = this;
+    setTimeout(() => {
+      self.tabShown((self.objVal.length > 0 ? 1 : 0))
+    }, 500);
   }
 }
 </script>

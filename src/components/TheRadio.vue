@@ -1,7 +1,7 @@
 <template>
   <div v-if="typeof(controlOptions) !== 'undefined' && controlOptions.readOnly">
     <b-form-group :label="!noLabel ? title : ''">
-      <p class="form-value">{{ msg.toString() }}</p>
+      <p class="form-value">{{ (typeof msg !== 'undefined')?msg.toString():'' }}</p>
     </b-form-group>
   </div>
   <div v-else>
@@ -51,6 +51,10 @@ export default {
   created(){
     if(typeof(this.callBackEvent) === 'function')
     {
+      /* let self = this;
+      setTimeout(() => {
+        self.callBackEvent(self.objKey, self.objVal, true, this.uniqueKey);  
+      }, 100); */
       this.callBackEvent(this.objKey, this.objVal, true, this.uniqueKey);
     }
   },

@@ -4,7 +4,7 @@
       <p v-if="isMultiple" class="form-value p-0">
         <span v-for="(e, key) in msg" :key="key" class="badge badge-lightBlue" :class="{ 'ml-1' : key!==0 }">{{e}}</span>
       </p>
-      <p class="form-value" v-else>{{ this.getLabel.toString() }}</p> 
+      <p class="form-value">{{ typeof this.getLabel !== 'undefined' ? this.getLabel.toString() : '' }}</p>
     </b-form-group>
   </div>
   <div v-else>
@@ -73,7 +73,7 @@ export default {
     getLabel(){
       if(this.options.length > 0 && typeof(this.options[0]) === 'object'){
         //return this.options.filter(o => o.id === this.msg)[0].label;
-        return this.msg.toString();
+        return this.msg;
       }else{
         return this.msg;
       }

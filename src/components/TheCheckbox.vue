@@ -1,7 +1,7 @@
 <template>
   <div v-if="typeof(controlOptions) !== 'undefined' && controlOptions.readOnly">
     <b-form-group :label="!noLabel ? title : ''">
-      <p class="form-value">{{ msg.toString() }}</p>
+      <p class="form-value">{{ (typeof msg !== 'undefined')?msg.toString():'' }}</p>
     </b-form-group>
   </div>
   <div v-else>
