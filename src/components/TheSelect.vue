@@ -4,7 +4,7 @@
       <p v-if="isMultiple" class="form-value p-0">
         <span v-for="(e, key) in msg" :key="key" class="badge badge-lightBlue" :class="{ 'ml-1' : key!==0 }">{{e}}</span>
       </p>
-      <p class="form-value">{{ typeof this.getLabel !== 'undefined' ? this.getLabel.toString() : '' }}</p>
+      <p v-else class="form-value">{{ typeof this.getLabel !== 'undefined' ? this.getLabel.toString() : '' }}</p>
     </b-form-group>
   </div>
   <div v-else>
