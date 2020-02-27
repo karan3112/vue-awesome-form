@@ -156,22 +156,6 @@ export default {
       return !(typeof this.controlOptions !== 'undefined' && this.controlOptions.hasOwnProperty('description'))
     }
   },
-  created() {
-    EventBus.$on('on-input-validate', obj => {
-      if(obj.parentName !== 'TheTable') return;
-      obj.keyArr.reduce((pre, cur, curIndex, arr) => {
-        if(curIndex === arr.length - 1) {
-          if(typeof(cur) === 'number') {
-              return pre.splice(cur, 1, value);
-          } else {
-              return pre[cur] = obj.validateObj;
-          }
-        }
-        return pre[cur] = pre[cur] || {}
-      }, this.validateArray);
-      return false;
-    })
-  },
   methods: {
     slugify(key, alt){
       if(key)
@@ -258,6 +242,21 @@ export default {
     setTimeout(() => {
       self.tabShown((self.objVal.length > 0 ? 1 : 0))
     }, 500);
+
+    EventBus.$on('on-input-validate', obj => {
+      if(obj.parentName !== 'TheTable') return;
+      obj.keyArr.reduce((pre, cur, curIndex, arr) => {
+        if(curIndex === arr.length - 1) {
+          if(typeof(cur) === 'number') {
+              return pre.splice(cur, 1, value);
+          } else {
+              return pre[cur] = obj.validateObj;
+          }
+        }
+        return pre[cur] = pre[cur] || {}
+      }, this.validateArray);
+      return false;
+    })
   }
 }
 </script>

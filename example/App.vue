@@ -41,206 +41,132 @@ export default {
     handleReset() {
       this.$refs.schemaForm.resetFields();
     },
-    genderCallback(objKey, objVal){
-      console.log(objVal);
-      let val = objKey.filter(k => k !== 'gender')
-              .reduce((obj, k) => obj[k], this.formData.value.register.pets);
-      if(objVal === 1){
-        this.formData.schema.register.properties.pets.columns['name'] = {
-          "type": "TheInput",
-          "title": "Name",
-          "rules": {
-            "required": true,
-            "message": "Name is required"
-          },
-          "layoutClass":"col-md-12"
-        }
-        this.formData.schema.register.properties.pets.columns = Object.assign({}, this.formData.schema.register.properties.pets.columns); 
-      }else{
-        delete this.formData.schema.register.properties.pets.columns.name;
-        this.formData.schema.register.properties.pets.columns = Object.assign({}, this.formData.schema.register.properties.pets.columns); 
-      }
-    }
   },
   data () {
     return {
       "formData": {
         "schema": {
           "register": {
-                "type": "TheTree",
-                "title": "Register",
-                "properties": {
-                    "sample" : {
-                      "type" : "TheObject",
-                      "title" : "Sample",
-                      "columns" : {
-                        "pets": {
-                          "type": "TheTable",
-                          "title": "Pets",
-                          "columns": {
-                            "type": {
-                              "type": "TheSelect",
-                              "title": "Type",
-                              "propertyOrder": 1,
-                              "controlOptions" : {
-                                
-                              },
-                              "options": [
-                                {
-                                  "id": 1,
-                                  "label": "Cat",
-                                },
-                                {
-                                  "id": 2,
-                                  "label": "Dog",
-                                  "class" : "dog-icon"
-                                },
-                                {
-                                  "id": 3,
-                                  "label": "Fish",
-                                  "class" : "fish-icon"
-                                },
-                              ],
-                              "rules": {
-                                "type": "number",
-                                "required": true,
-                                "message": "Select valid value"
-                              }
-                            },
-                            "gender": {
-                              "type": "TheRadio",
-                              "title": "Gender",
-                              "propertyOrder": 3,
-                              "options": [
-                                {
-                                  "value": 1,
-                                  "label": "Male"
-                                },
-                                {
-                                  "value": 2,
-                                  "label": "Female"
-                                }
-                              ],
-                              "callBackEvent" : this.genderCallback,
-                              "rules": {
-                                "type": "number",
-                                "required": true,
-                                "message": "The gender cannot be empty"
-                              }
-                            },
-                            "interests": {
-                              "type": "TheCheckbox",
-                              "title": "Interests",
-                              "propertyOrder": 2,
-                              "options": [
-                                {
-                                  "value": 1,
-                                  "label": "Option1"
-                                },
-                                {
-                                  "value": 2,
-                                  "label": "Option2"
-                                },
-                                {
-                                  "value": 3,
-                                  "label": "Option3"
-                                }
-                              ],
-                              "rules": {
-                                "type": "array",
-                                "required": true,
-                                "message": "The interests cannot be empty"
-                              }
-                            },
-                            "roles" : {
-                                "type": "TheAddInput",
-                                "title": "Roles",
-                                "rules": {
-                                    "required": true,
-                                    "message": "This field is required"
-                                },
-                                "layoutClass":"col-md-4",
-                                "controlOptions" : {
-                                  "isTags" : true,
-                                },
-                            },
-                            "description": {
-                                "type": "TheTextArea",
-                                "title": "Description",
-                                "rules": [{
-                                    "required": true,
-                                    "message": "This field is required"
-                                }],
-                                "layoutClass" : "col-md-12",
-                                "controlOptions" : {
-                                  "isMD" : true,
-                                },
-                            },
-                            "proxy" : {
-                              "type": "TheObject",
-                              "title": "Proxy",
-                              "columns": {
-                                "name" : {
-                                  "type": "TheInput",
-                                  "title": "Name",
-                                  "rules": {},
-                                  "layoutClass" : "col-md-6",
-                                },
-                                "products" : {
-                                  "type": "TheInput",
-                                  "title": "Products",
-                                  "rules": {},
-                                  "layoutClass" : "col-md-6",
-                                },
-                              },
-                              "controlOptions" : {
-                                "disabled" : true,
-                              },
-                            }
-                          },
-                          "addDefault": {
-                            "type": "",
-                            "name": "",
-                            "gender": "",
-                            "interests": []
-                          },
-                          "addText": "+ Add Pet",
-                          "rules": {
-                            "type": "array",
-                            "required": true,
-                            "message": "The pets cannot be empty"
-                          },
-                          "controlOptions" : {
-                            "isTab" : true,
-                            "tabTitle" : "Pet",
-                          },
-                          "layoutClass" : "col-md-12",
+                "type" : "TheTree",
+                "title" : "Proxy",
+                "properties" : {
+                    "name" : {
+                        "type" : "TheInput",
+                        "title" : "API Name",
+                        "rules" : {
+                            "required" : true,
+                            "message" : "This field is required"
                         }
-                      }
+                    },
+                    "version" : {
+                        "type" : "TheInput",
+                        "title" : "Version",
+                        "rules" : {
+                            "required" : true,
+                            "message" : "This field is required"
+                        }
+                    },
+                    "description" : {
+                        "type" : "TheInput",
+                        "theFormat" : "textarea",
+                        "title" : "Description",
+                        "rules" : {
+                            "required" : false,
+                            "message" : "This field is required"
+                        },
+                        "layoutClass" : "col-md-12"
+                    },
+                    "basePath" : {
+                        "type" : "TheInput",
+                        "title" : "Base Path",
+                        "rules" : [{
+                            "required" : true,
+                            "pattern" : new RegExp('^' + '/', 'i'),
+                            "message": "Please enter a valid basepath"
+                        }],
+                    },
+                    "buildProxyArtifact" : {
+                        "type" : "TheInput",
+                        "title" : "Build Proxy Artifact",
+                        "rules" : {
+                            "required" : true,
+                            "message" : "This field is required"
+                        }
+                    },
+                    "buildProxyArtifactType" : {
+                        "type" : "TheInput",
+                        "title" : "Build Proxy Artifact Type",
+                        "rules" : {
+                            "required" : true,
+                            "message" : "This field is required"
+                        }
+                    },
+                    "flows" : {
+                        "type" : "TheObject",
+                        "title" : "",
+                        "columns" : {
+                            "flow" : {
+                                "type" : "TheTable",
+                                "title" : "Flows",
+                                "columns" : {
+                                    "name" : {
+                                        "type" : "TheInput",
+                                        "title" : "Name",
+                                        "rules" : {
+                                            "required" : true,
+                                            "message" : "This field is required"
+                                        }
+                                    },
+                                    "description" : {
+                                        "type" : "TheInput",
+                                        "theFormat" : "textarea",
+                                        "title" : "Description",
+                                        "rules" : {
+                                            "required" : false,
+                                            "message" : "This field is required"
+                                        },
+                                        "layoutClass" : "col-md-12"
+                                    },
+                                    "path" : {
+                                        "type" : "TheInput",
+                                        "title" : "Path",
+                                        "rules" : [{
+                                            "required" : true,
+                                            "pattern" : new RegExp('^' + '/', 'i'),
+                                            "message": "Please enter a valid path"
+                                        }],
+                                    },
+                                },
+                                "controlOptions" : {},
+                                "layoutClass" : "col-md-12",
+                            }
+                        },
+                        "layoutClass" : "col-md-12 hideAdd",
                     }
                 },
                 "controlOptions" : {
-                  "readOnly" : true
-                },
+                    "readOnly" : false
+                }
             }
         },
         "value": {
             "register": {
-                "sample" : {
-                  "pets": [{
-                    "type": "",
-                    "name": "",
-                    "gender": 1,
-                    "interests": [],
-                    "roles" : ["Hello", "There"],
-                    "description" : "",
-                    "proxy" : {
-                      "name" : "",
-                      "products" : ""
-                    }
-                  }]
+                name : "a",
+                version : 1,
+                description : "aa",
+                basePath : "/",
+                buildProxyArtifact : "aa",
+                buildProxyArtifactType : "aa",
+                flows : {
+                    flow : [
+                        {
+                            name : "",
+                            description : "",
+                            path : ""
+                        }
+                    ]
                 }
-            },
+            }
         }
       },
     }
